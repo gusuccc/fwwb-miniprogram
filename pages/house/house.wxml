@@ -1,0 +1,219 @@
+<wxs module="filter"  src='../../utils/filter.wxs'></wxs>
+<van-calendar
+  show="{{ show }}"
+  type="range"
+  bind:close="onClose"
+  bind:confirm="onConfirm"
+  bindtap=""
+/>
+<van-dialog id="van-dialog" />
+<scroll-view bindscroll="scroll" scroll-top="{{scrollTop}}" scroll-y="true" style="position:absolute; top:0; left:0; right:0; bottom:0;">
+  <view class="container">
+    <view bindtap="imgPreview">
+      <swiper autoplay="{{autoplay}}"class="banner-box  swiper-box" autoplay="{{true}}" indicator-dots="{{true}}"  circular="{{true}}" bindchange="swiperchange" interval="3000">
+        <swiper-item wx:for="{{imgurl}}" wx:for-item="item" wx:key="id">
+          <image src="{{item.url}}" background-size="cover"></image>
+        </swiper-item>
+      </swiper>
+      <view class="hengfu">
+        <text class="biaoyu1">必看好房</text>
+        <text class="biaoyu2">√ 高性价比</text>
+        <text class="biaoyu2">√ 热门枪手</text>
+        <text class="biaoyu3">√ 品质好房</text>
+      </view>
+      <view class="number-banner"><!--轮播角标-->
+        <text>{{currentIndex}}</text>
+        <text>/{{imgurl.length}}</text>
+      </view>
+    </view>
+    <view class="cont-box b-f">
+      <view class="money-box">
+        <text class="price" style="color:RGB(231,60,60)">{{unitprice}}</text><!--现价-->
+        <text class="num" style="color:RGB(231,60,60);font-size:15px">元/日</text><!--单位-->
+      </view>
+      <view class="zixun">
+        <image class="zixun-avatar" src="../../images/icon/contact.png" ></image>
+        <text class="dianwo">点我咨询</text>
+      </view>
+      <view class="goods-title">
+        <view>{{allinfo.msg}}</view>
+        <text class="grade_title">{{flatname}}</text>
+        <view class="grade_title">{{flatdetail}}</view>
+      </view> 
+      <view class="jianjie">
+        <view class="jianjie1txt">东西</view>
+        <view class="jianjie1txt">{{flatarea}}m^2</view>
+        <view class="jianjie1txt">中/8层</view>
+        <view class="jianjie1txt">14:00</view>
+      </view>
+      <view class="jianjie" style="margin-top:10px;margin-left:25px">
+        <view class="jianjie2txt">朝向</view>
+        <view class="jianjie2txt">面积</view>
+        <view class="jianjie2txt">楼层</view>
+        <view class="jianjie2txt">入住时间</view>
+      </view>
+      <view class="divLineX"></view>
+      <view class="biaoqianlan"><!--wx:for-->
+        <van-tag class="house-tag" type="primary" >近地铁</van-tag>
+        <van-tag class="house-tag" type="primary">集中供暖</van-tag>
+        <van-tag class="house-tag" type="primary">有电梯</van-tag>
+        <van-tag class="house-tag" type="primary">民水民电</van-tag>
+      </view>  
+    </view>
+   
+    <view bindtap="onChangeShowState" class="cont-box b-f goods-property-box m-top20">
+      <text class="col-3 f-30">年租量：</text>
+      <text class="col-3 f-30"> {{flagSalenum}} </text><!--已选xx个-->
+      <text class="col-3 f-30">天</text>
+    </view>
+    <!-- 商品评论 -->
+  
+      <view class="cont-box b-f goods-property-box m-top20">
+        <text class="col-3 f-30">租客评价</text>
+        <text class="comment-num">查看更多</text>
+        <view class="goods-property-jianTou">
+          <text class="iconfont icon-xiangyoujiantou user-orderJtou" style="margin-top:0;"></text>
+        </view>
+      </view>
+      <view class="goods_comment_box b-f"><!--wx:for-->
+        <view class="cont-box goods-comment-box b-t b-f b-b">
+          <text class="admin">{{comments[0].userid}}</text>
+          <view class="com_xing"><!--wx:if-->
+            <van-rate   allow-half size="{{ 10 }}" readonly value="{{4.5}}" bind:change="onChange" /><!-- readonly value="{{value}}"-->
+          </view>
+          <view class="goods-comment-cont m-top20">{{comments[0].description}}</view><!--评论内容-->
+          <view class="f-22 col-9 m-top10">{{filter.newFormatTime(comments[0].fccreateTime)}}</view>
+        </view>
+      </view>
+     <!--房屋评价-->
+     <view class="cont-box b-f shops-property-box m-top20">
+        <view>
+          <image class="shop-avatar" src="https://img03.sogoucdn.com/app/a/4001/9f8977dc-5973-4be0-b6b9-b9baf86c3ef9-20210219135523.jpg"></image>
+        </view>
+        <view>
+          <text class="shop-name">{{salename}}</text>
+          <view><text class="shop-le">官方推荐</text></view>
+        </view>
+        <view class="shop-button">
+          <text>查看业主</text>
+        </view>
+        <view class="shop-down" ><!--填充数据-->
+          <view class="shop-dis1">房屋评分:{{salerank}}</view>
+          <!-- <view class="shop-dis2">业主服务:4.9☆</view> -->
+        </view>
+      </view>
+
+    <!-- 商品描述 -->
+    <view class="p-bottom">
+      <view class="order" ><!--hidden="{{hiddenOrder}}"-->
+        <view wx:if="{{!detail.content}}">             <!--wx:if="{{detail.content!=''}}-->  <!--有商品详情-->
+          <view class="b-f goods-detail-box">
+            <view class="goods-cont-li">
+              <view class="cont-box b-f goods-property-box m-top20">
+              <text class="shop-name">房屋分类</text>
+            </view>
+           </view>
+            <view class="goods-cont-li">
+              <view class="cont-box b-f goods-property-box m-top20">
+              <text class="col-3 f-30">房屋分类：</text>
+              <text class="house-detail" >民宿</text>
+              <view class="goods-property-jianTou">
+                 <text class="iconfont icon-xiangyoujiantou user-orderJtou" style="margin-top:0;"></text>
+              </view>
+            </view>
+           </view>
+        <view class="goods-cont-li">
+              <view class="cont-box b-f goods-property-box m-top20">
+              <text class="col-3 f-30">房屋特色:</text>
+              <text class="house-detail">{{flatfeature}}</text>
+              <view class="goods-property-jianTou">
+          <text class="iconfont icon-xiangyoujiantou user-orderJtou" style="margin-top:0;"></text>
+        </view>
+      </view>
+    </view>
+        <view class="goods-cont-li">
+              <view class="cont-box b-f goods-property-box m-top20">
+              <text class="col-3 f-30">预订须知:</text>
+              <text class="house-detail">{{Bookinformation}}</text>
+              <view class="goods-property-jianTou">
+          <text class="iconfont icon-xiangyoujiantou user-orderJtou" style="margin-top:0;"></text>
+        </view>
+      </view>
+      </view>
+      <view class="goods-cont-li"><!--占空-->
+              <view class="cont-box b-f goods-property-box m-top20">
+              <text class="col-3 f-30"></text>
+              <text class="house-detail"></text>
+              <view class="goods-property-jianTou">
+        </view>
+      </view>
+      </view>
+            </view>
+        </view>
+        <view wx:else><!--wx:else--><!--无商品详情-->
+          <view class="xiaoxiangshop-notcont">
+            <text class="iconfont icon-ziyuan"></text>
+            <text class="cont">亲,此处暂无详情数据</text>
+          </view>
+        </view>
+        <view class="b-f goods-detail-box">
+            <view class="goods-cont-li">
+              <view class="cont-box b-f goods-property-box m-top20">
+              <text class="shop-name">房源位置</text>
+            </view>
+           </view>
+            <view class="goods-cont-li">
+              <view class="cont-box b-f goods-property-box m-top20">
+              <text class="col-3 f-30">{{flataddr}}</text>
+              <view class="goods-property-jianTou">
+                 <text class="iconfont icon-xiangyoujiantou user-orderJtou" style="margin-top:0;"></text>
+              </view>
+            </view>
+           </view>
+      <view class="goods-cont-li">
+              <view class="cont-box b-f goods-property-box m-top20">
+              <text class="col-3 f-30">出行信息</text>
+              <view class="goods-property-jianTou">
+        </view>
+      </view>
+      </view>
+      <view class="goods-cont-li">
+              <view class="cont-box b-f goods-property-box m-top20" style="width:80%">
+              <text class="house-detail">{{gooutinfo}}</text>
+      </view>
+      </view>
+      <view  class="goods-cont-li" >
+    <image class="ditu" mode="widthFix" src="https://staticfile.tujia.com/upload/info/day_140822/201408221037429804.jpg"></image>
+  </view>
+            </view>
+      </view>
+     
+    </view>
+    
+    <!-- 底部操作栏 -->
+    <view class="footer-fixed f-30">
+      <!-- 在线客服 -->
+      <view class="goods-fixed-icon dis-flex flex-x-center flex-y-center">
+        <button open-type="contact" sessionFrom="weapp" size="27" style="opacity: 0;position:absolute;top:0px;left:0px;display:block;width:100%;height:100%;" type="default-light"></button>
+        <text class="iconfont icon-icon_service"></text>
+      </view>
+      <!-- 购物车按钮 -->
+      <view bindtap="flowCart" class="goods-fixed-icon dis-flex flex-x-center flex-y-center">
+        <text class="iconfont icon-cart_b"></text>
+        <view class="flow_num" >
+          <text class="">{{zongshu}}</text>
+        </view>
+      </view>
+      <view class="order-number" data-type="addCart" bindtap="addwant">加入心愿单</view>
+      <view class="order-bt" data-type="buyNow" bindtap="submit"> 立即租赁</view>
+    </view>
+  </view>
+</scroll-view>
+
+<!-- 返回顶部 -->
+<view bindtap="goTop" class="widget-goTop" >
+  <text class="iconfont icon-fanhuidingbu"></text>
+</view>
+
+<!-- 快捷导航 -->
+<shortcut></shortcut>

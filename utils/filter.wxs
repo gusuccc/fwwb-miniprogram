@@ -1,0 +1,8 @@
+//通过substring截取处理时间
+function newFormatTime(timestamp) {
+  return (timestamp.substring(0, 10))
+}
+
+module.exports = {
+    newFormatTime:newFormatTime
+}

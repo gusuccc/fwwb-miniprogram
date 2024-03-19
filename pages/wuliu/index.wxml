@@ -1,0 +1,70 @@
+<view class="container">
+    <view class="top-sec">
+        <view class="a-row">
+            <view class="label">物流单号</view>
+            <view class="text">9882228789885</view>
+        </view>
+        <view class="a-row">
+            <view class="label">物流公司</view>
+            <view class="text">中国邮政速递物流股份有限公司</view>
+        </view>
+    </view>
+    <view  class="empty">
+        <image mode="widthFix" src="https://xqj-1301697474.cos.ap-chengdu.myqcloud.com/housepic/wuliu"></image>
+    </view>
+    <view class="sec-wrap" style="margin-top:0">
+        <view class="details-info">
+            <view class="line-box"></view>
+            <view class="a-row"  wx:key="{{index}}"><!--wx:for-items="{{logisticsTraces}}"-->
+                <view class="dot">
+                    <view class="active-dot" ><view class="yuan-red"></view></view><!--hidden="{{index== 0 ? false : true}}"-->
+                  <!--  <view class="default-dot" ></view><!--hidden="{{index== 0 ? true : false}}"-->
+                </view>
+                <view class="info">
+                    <view class="date-box">已发货 2021-3-31 15:10</view>
+                    <view class="text">【上海市】您的包裹已由物流公司揽收</view>
+                </view>
+            </view>
+
+            <view class="a-row">
+                <view class="dot">
+                    <view class="default-dot"></view>
+                </view>
+                <view class="info">
+                    <view class="date-box">2021-3-31 15:16</view>
+                    <view class="text">【上海市】您的包裹已从【华中区分公司亭部】发出</view>
+                </view>
+            </view>
+            <view class="a-row">
+                <view class="dot">
+                    <view class="default-dot"></view>
+                </view>
+                <view class="info">
+                    <view class="date-box">2021-4-1  12:48</view>
+                    <view class="text">【武汉市】您的包裹已到达【武汉邮件处理中心】</view>
+                </view>
+            </view>
+            <view class="a-row">
+                <view class="dot">
+                    <view class="default-dot"></view>
+                </view>
+                <view class="info">
+                    <view class="date-box">2021-4-1 13:24</view>
+                    <view class="text">【武汉市】您的包裹已从【武汉邮件处理中心】发出</view>
+                </view>
+            </view>
+
+            <view class="a-row"  wx:key="{{index}}"><!--wx:for-items="{{logisticsTraces}}"-->
+                <view class="dot">
+                    <view class="active-dot" ><view class="yuan-red"></view></view><!--hidden="{{index== 0 ? false : true}}"-->
+                  <!--  <view class="default-dot" ></view><!--hidden="{{index== 0 ? true : false}}"-->
+                </view>
+                <view class="info">
+                    <view class="date-box">2021-4-2 13:54</view>
+                    <view class="text">【武汉市】您的包裹已达【武汉市广义区中心】，准备分配送员</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<float-menu /> 

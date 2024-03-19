@@ -1,0 +1,95 @@
+<!--pages/select-house/index.wxml-->
+<van-calendar
+  show="{{ show }}"
+  type="range"
+  bind:close="onClose"
+  bind:confirm="onConfirm"
+/>
+
+<view class='banner-wrap jz' wx:if="{{show_banner!=0}}" >
+        <swiper class="banner" indicator-dots="true" autoplay="{{autoplay}}" interval="3000" duration="1000"   >
+            <swiper-item wx:for="{{banner}}" wx:key="id" style="margin-right=-20px;">
+                <navigator wx:if="{{item.link_type == 0}}" url="/pages/goods/goods?id={{item.goods_id}}">
+                    <image src="{{item.image_url}}" background-size="cover"></image>
+                </navigator>
+                <navigator wx:elif="{{item.link_type == 1}}" url="{{item.link}}">
+                    <image src="{{item.image_url}}" background-size="cover"></image>
+                </navigator>
+            </swiper-item>
+        </swiper>
+    </view>
+<view class="sousuo">
+ 
+  <view class="a-item">
+      <view class="icon"bindtap='getLocalLocation'>
+      <image class="img" src="/images/icon/position.png" ></image>
+    </view>
+     <view class="input-wrap" >
+         <text class="dangqianchengshi" bindtap='getLocalLocation'>当前城市:</text>
+         <input cursor-spacing='100' bindtap='selectCity'  class="a-input" value="{{location}}" disabled="true" placeholder="选择城市" />
+      </view>
+  </view>
+  <view class="riqi">
+    <view>
+      <view class="lt" bindtap="onDisplay">
+        <text>{{begin_date}}</text>
+        <text class="rq">入住</text>
+      </view>
+      <text class="ct">共计{{diff_date}}晚</text>
+      <view class="rt" bindtap="onDisplay">
+        <text>{{end_date}}</text>
+        <text class="rq">离店</text>
+      </view>
+    </view>
+  </view>
+  <view class="pick">
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{appropriate}}">
+      <text>{{tip}}</text>
+      <image src="/images/minsu/jiantou.png"></image>
+    </picker>
+  </view>
+  <button bindtap="gominsu">搜索租房</button>
+</view>
+
+<view class="kongbai"></view>
+  <!--优选商家-->
+  <view class="cu-bar bg-white margin-top solid-bottom">
+    <view class='action'>
+        <text class='icon-title text-green'></text>
+        <text>优选商家</text>
+    </view>
+    <navigator hover-class='none' url="/pages/home/groom/index">
+        <view class='action' style="font-size: 27rpx;"> 更多 <view class='icon-right'></view> </view>
+    </navigator>
+</view>
+<view class="bg-white" style="margin-top:10px;padding:0;">
+    <view class='nav-list canui-flex-car'>
+      <block wx:for="{{flatinfo}}" wx:for-item="item" wx:key="id">
+        <navigator hover-class='none' url="../house/house?flagid={{item.flatId}}" class="nav-li canui-yx-url"style="margin:0;padding:0;">
+            <view class="flex-sub cu-card case shadow-warp bg-white">
+                <view class="cu-item shadow">
+                    <view class='image'>
+                        <image src="{{item.imgurl}}" mode="widthFix"></image>
+                    </view>
+                    <view class="cu-list menu menu-avatar">
+                        <view class="cu-item">
+                            <view class='content flex-sub'>
+                                <view class='text-grey' style="margin-top:-100rpx;padding-top:75rpx;word-break:break-all;" >{{item.flatname}}</view>
+                                <view class='text-gray text-sm flex justify-between'>
+                                    {{item.flatprice}}/天
+                                </view>
+                                <van-rate   allow-half size="{{ 8 }}" readonly value="{{item.flatscore}}" bind:change="onChange" /><!-- readonly value="{{value}}"-->
+                            </view>
+                            <view class='text-black text-sm flex justify-between' style="margin-top:25px;">
+                                    {{item.pjnum}}.超赞房东
+                                </view>
+                        </view>
+                    </view>
+                    <view class="cu-avatar radius" style="background-image:url(https://img.redocn.com/sheji/20170401/siyecaokafeibeitubiao_8051049.jpg.285.jpg);"></view>
+                </view>
+            </view>
+        </navigator>
+      </block>
+    </view>
+</view>
+

@@ -1,0 +1,60 @@
+<view wx:if="{{goodsData.length > 0}}" class="shopcart">
+  <view class="edit-btn" bindtap="editBtnClick">
+    <van-tag plain type="primary">{{isEdit ? '管理' : '完成'}}</van-tag>
+  </view>
+  <view class="shop-head" wx:for="{{goodsData}}" wx:key="{{index}}" wx:for-index="idx" >
+    <view class="shop-name">
+      <icon type="{{item.selected ? 'success' : 'circle'}}" color="{{item.selected ? '#F7323A' : '#C5C5C5'}}" bindtap="selectStore" data-shop-index="{{idx}}"></icon>
+      <text>{{item.shopname}}</text>
+    </view>
+    <view class="shop-content" wx:for="{{item.goodsInfo}}" wx:key="{{index}}">
+      <icon type="{{item.selected ? 'success' :  'circle'}}" color="{{item.selected ? '#F7323A' : '#C5C5C5'}}" bindtap="selectGood" data-index="{{index}}" data-shop-index="{{idx}}"></icon>
+      <image src="{{item.spavatar}}"></image>
+      <view class="shop-detail">
+        <view class="desc">{{item.spname}}</view>
+        <view class="price-and-num" >
+          <view class="price">￥{{item.price}}</view>
+          <view wx:if="{{isEdit}}" class="num" style="margin-left:60%;">
+            <view class="decrement" data-index="{{index}}" data-shop-index="{{idx}}" bindtap="decrementClick">-</view>
+            <input placeholder="1" value="{{item.spnum}}"></input>
+            <view class="increment" data-index="{{index}}" data-shop-index="{{idx}}" bindtap="incrementClick">+</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-bar">
+    <view class="all-selected" wx:if="{{isEdit==1}}">
+      <view class="check-content">
+        <icon type="{{isAllSelected == true ? 'success' : 'circle'}}" color="{{isAllSelected == true ? '#F7323A' : '#C5C5C5'}}" bindtap="allSelectedClick"></icon>
+        <text>全选</text>
+      </view>
+      <view class="total-price">
+        <view class="count">
+          <text>合计：</text>
+          <text>¥{{selectPrice}}</text>
+        </view>
+        <view class="fare">不含运费</view>
+      </view>
+    </view>
+    <view class="all-selected" wx:else>
+      <view class="check-content">
+        <icon type="{{isAllSelected == true ? 'success' : 'circle'}}" color="{{isAllSelected == true ? '#F7323A' : '#C5C5C5'}}" bindtap="allSelectedClick"></icon>
+        <text>全选</text>
+      </view>
+    </view>
+    <view class="calculate" wx:if="{{isEdit==1}}" bindtap="payBtn">
+      结算 ({{selectNum}})
+    </view>
+    <view class="calculate" wx:else bindtap="deleteBtn">
+      删除 ({{selectNum}})
+    </view>
+  </view>
+</view>
+
+
+<view wx:else class="empty-goods">
+  <image src="/images/shopcart.png"></image>
+  <text>购物车暂无商品</text>
+  <view>去逛逛</view>
+</view> 

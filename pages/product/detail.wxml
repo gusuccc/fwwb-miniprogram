@@ -1,0 +1,207 @@
+<import src="../../wxParse/wxParse.wxml"></import>
+<scroll-view bindscroll="scroll" scroll-top="{{scrollTop}}" scroll-y="true" style="position:absolute; top:0; left:0; right:0; bottom:0;">
+  <view class="container">
+    <view bindtap="imgPreview">
+      <swiper autoplay="{{autoplay}}" bindchange="setCurrent" class="banner-box  swiper-box" duration="{{duration}}" indicator-dots="{{indicatorDots}}" interval="{{interval}}" circular="{{true}}">
+        <swiper-item><!---商品轮播  wx:for="{{detail.productImages}}" wx:key="this"-->
+          <image class="slide-image" mode="aspectFill" src="https://img.alicdn.com/bao/uploaded/i1/1800180819/O1CN018mhx0K1Hv8yjVQ0h3_!!0-item_pic.jpg_230x230.jpg"></image>
+        </swiper-item>
+      </swiper>
+      <view class="number-banner"><!--轮播角标-->
+        <text>{{currentIndex}}</text>
+        <text>/{{detail.productImages.length}}</text>
+      </view>
+    </view>
+    <view class="cont-box b-f" >
+      <view class="goods-title">
+        <text class="grade1">官方</text>
+        <text class="grade2">非官方</text>
+        <text class="grade_title">人体工学电脑椅学生椅子</text><!--商品名称-->
+      </view>
+
+      <view class="goods-title ">
+        <text class="internalNumber" style="color:red;">【新品】活动扶手省空间，软腰托舒适再升级</text><!--商品caption-->
+      </view>
+
+      <view class="goods-title ">
+        <text class="internalNumber">商品编码：1145141919</text><!--商品编码-->
+        <text class="internalNumber_1">库存：7721</text><!--商品库存-->
+      </view>
+  <!--商品标签
+      <view class="goods-title">
+        <text class="biaoqian"></text>
+      </view>
+      -->
+      <view class="money-box">
+        <text class="num">￥499</text><!--现价-->
+        <text class="del" >市场价：￥699</text><!--划价-->
+        <text class="quehuo"wx:if="{{detail.defaultSku.stock<1}}">缺货</text><!--用wx:if判断是否显示缺货-->
+      </view>
+      
+      <!-- <view class="goods-sales-box f-28 dis-flex">
+        <text class="flex-box num">销量：{{detail.sales}}</text>
+        <text class="flex-box stock">库存：{{detail.defaultSku.stock}}</text>
+      </view> -->
+
+      <!--会员制度
+      <view>
+        <view class="goods-sales-box f-28 dis-flex" >
+          <text class="flex-box">普通会员价:￥{{detail.defaultSku.isZsz==false?detail.defaultSku.price:detail.defaultSku.skuNormalPrice0}}</text>
+          <text class="flex-box">VIP卡价:￥{{detail.defaultSku.isZsz==false?detail.defaultSku.price:detail.defaultSku.skuNormalPrice1}}</text>
+        </view>  
+      
+        <view class="goods-sales-box f-28 dis-flex">
+            <text class="flex-box">VIP金卡价:￥{{detail.defaultSku.isZsz==false?detail.defaultSku.price:detail.defaultSku.skuNormalPrice2}}</text>
+            <text class="flex-box">VIP钻石卡价:￥{{detail.defaultSku.isZsz==false?detail.defaultSku.price:detail.defaultSku.skuNormalPrice3}}</text>
+          </view>  
+      </view>
+      
+     <view>
+        <view class="goods-sales-box f-28 dis-flex" >
+          <text class="flex-box">促销普通会员价:￥{{detail.defaultSku.skuPromotionPrice0}}</text>
+          <text class="flex-box">促销VIP卡价：￥{{detail.defaultSku.skuPromotionPrice1}}</text>
+        </view>
+
+        <view class="goods-sales-box f-28 dis-flex" >
+          <text class="flex-box">促销VIP金卡价:￥{{detail.defaultSku.skuPromotionPrice2}}</text>
+          <text class="flex-box">促销VIP钻石卡价:￥{{detail.defaultSku.skuPromotionPrice3}}</text>
+        </view>
+      </view>
+       -->
+
+        <!--商品促销，暂时没用-->
+        <view class="cuxiao_tt">
+             <template  is="wxParse" data="{{wxParseData:text.nodes}}"></template>
+        </view>
+
+    </view>
+   
+    <view bindtap="onChangeShowState" class="cont-box b-f goods-property-box m-top20">
+      <text class="col-3 f-30">已选</text>
+      <text class="col-3 f-30"> {{quantity}} </text><!--已选xx个-->
+      <text class="col-3 f-30">个</text>
+      <view class="goods-property-jianTou">
+        <text class="iconfont icon-xiangyoujiantou user-orderJtou-1"></text>
+      </view>
+    </view>
+    <view class="cart bright789_view_hide {{showView?'bright789_view_show':''}}">
+      <view class="modal_cont_box">
+        <scroll-view class="goods-list-box" scroll-y="true">
+          <view class="cf tmall-types" wx:for="{{specData.specificationItems}}" wx:for-item="specificationItem" wx:for-index="attr_idx" wx:key="key">
+            <view class="tipstxt" data-id="{{specificationItem.id}}">{{specificationItem.name}}</view>
+              <view class="cf cartypelist" wx:for="{{specificationItem.entries}}" wx:for-index="item_idx" wx:key="ikey">
+                <view>
+                  <view bindtap="modelTap" class="cartypeitem cur" data-attr-idx="{{attr_idx}}" data-item-idx="{{item_idx}}">{{item.value}}</view>
+                </view>
+                <view>
+                  <view bindtap="modelTap" class="cartypeitem" data-attr-idx="{{attr_idx}}" data-item-idx="{{item_idx}}">{{item.value}}</view>
+                </view>
+              </view>
+            </view>
+          <view class="buy_number">
+            <view class="buyNumber f-26">
+              <text>购买数量</text>
+            </view>
+            <view class="selectNumber">
+              <button bindtap="down" class="default  {{quantity > 1 ? '' : ' default-active'}}" type="default">-</button>
+              <input bindinput="import" type="number" value="{{quantity}}" disabled></input>
+              <button bindtap="up" class="default" type="default">+</button>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+
+    <!-- 商品评论 -->
+  
+      <view class="cont-box b-f goods-property-box m-top20">
+        <text class="col-3 f-30">评价</text>
+        <text bindtap="toChild" class="comment-num">查看更多</text>
+        <view class="goods-property-jianTou">
+          <text class="iconfont icon-xiangyoujiantou user-orderJtou" style="margin-top:0;"></text>
+        </view>
+      </view>
+      <view class="goods_comment_box b-f"><!--wx:for-->
+        <view class="cont-box goods-comment-box b-t b-f b-b">
+          <text class="admin">咕苏</text>
+          <view class="com_xing"><!--wx:if-->
+            <!--<text class="iconfont icon-shoucang1">差评</text>
+            <text class="iconfont icon-shoucang1">中评</text>-->
+            <text class="iconfont icon-shoucang1">好评</text>
+          </view>
+          <view class="goods-comment-cont m-top20">气味大小：没有 外观材质：不错 直观感受：颜值高 工艺水平：精致 椅子总体还不错</view><!--评论内容-->
+          <view class="f-22 col-9 m-top10">2021-3-20</view><!--评论日期-->
+        </view>
+      </view>
+      <!--商家店铺-->
+      <view class="cont-box b-f shops-property-box m-top20">
+        <view>
+          <image class="shop-avatar" src="https://img03.sogoucdn.com/app/a/4001/9f8977dc-5973-4be0-b6b9-b9baf86c3ef9-20210219135523.jpg"></image>
+        </view>
+        <view style="float:left">
+          <text class="shop-name">LEIDFOR京东旗舰店</text>
+          <view><text class="shop-le">官方认证店</text></view>
+        </view>
+        <view class="shop-button">
+          <text>进店逛逛</text>
+        </view>
+        <view class="shop-down"><!--填充数据-->
+          <view class="shop-dis1">宝贝描述:4.9</view>
+          <view class="shop-dis2">卖家服务:4.9</view>
+          <view class="shop-dis3">物流服务:4.9</view>
+        </view>
+      </view>
+
+    <!-- 商品描述 -->
+    <view class="p-bottom">
+      <view class="top-nav m-top20 b-f b-b">
+        <view class="top-nav-bar">
+          <view bindtap="toOrder" id="top-nav-bar-true">
+            <span>商品详情</span>
+          </view>
+        </view>
+      </view>
+      <view class="order" ><!--hidden="{{hiddenOrder}}"-->
+        <view wx:if="{{!detail.content}}">             <!--wx:if="{{detail.content!=''}}-->  <!--有商品详情-->
+          <view class="b-f goods-detail-box">
+            <view class="goods-cont-li">
+              <image  mode="widthFix" src="https://img.alicdn.com/imgextra/i2/1800180819/O1CN01GBRPgT1Hv90tmo9o9_!!1800180819.jpg"></image>
+            </view>
+          </view>
+        </view>
+        <view wx:else><!--wx:else--><!--无商品详情-->
+          <view class="xiaoxiangshop-notcont">
+            <text class="iconfont icon-ziyuan"></text>
+            <text class="cont">亲,此处暂无详情数据</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部操作栏 -->
+    <view class="footer-fixed f-30">
+      <!-- 在线客服 -->
+      <view class="goods-fixed-icon dis-flex flex-x-center flex-y-center">
+        <button open-type="contact" sessionFrom="weapp" size="27" style="opacity: 0;position:absolute;top:0px;left:0px;display:block;width:100%;height:100%;" type="default-light"></button>
+        <text class="iconfont icon-icon_service"></text>
+      </view>
+      <!-- 购物车按钮 -->
+      <view bindtap="flowCart" class="goods-fixed-icon dis-flex flex-x-center flex-y-center">
+        <text class="iconfont icon-cart_b"></text>
+        <view class="flow_num" >
+          <text class="">{{zongshu}}</text>
+        </view>
+      </view>
+      <view bindtap="submit" class="order-number" data-type="addCart">加入购物车</view>
+      <view bindtap="submit" class="order-bt" data-type="buyNow"> 立即购买</view>
+    </view>
+  </view>
+</scroll-view>
+
+<!-- 返回顶部 -->
+<view bindtap="goTop" class="widget-goTop" >
+  <text class="iconfont icon-fanhuidingbu"></text>
+</view>
+
+<!-- 快捷导航 -->
+<shortcut></shortcut>

@@ -1,0 +1,574 @@
+/* pages/select-house/index.wxss */
+
+@import "/class/colorui.wxss";
+page{    background: #fff;
+  }
+
+.com_xing {
+    display: inline-block;
+    width:10px;
+  }
+.head-title{
+  margin: 0 auto;
+}
+.cu-custom .cu-bar{
+  padding-right:inherit;
+  background-image:linear-gradient(45deg, #ff9700, #ed1c24);
+}
+.bg-gradual-green {
+  background-image:linear-gradient(45deg, #ff9700, #ed1c24);
+}
+.text-green, .line-green, .lines-green {
+  color:#e45c5c;
+}
+.swiperitem{
+  background: #fff;
+  height:55px;
+}
+.canui-video{
+  width: 100%;
+  height: 425rpx;
+}
+.nav-list,.nav-li{
+  padding: 0px;
+  z-index: 0;
+}
+.canui-yx-url{
+  width:46% !important;
+  margin:0 2% 30rpx !important;
+}
+.canui-flex-car{
+  padding-top: 10px;
+}
+.canui-flex-car .cu-card>.cu-item {
+  margin: 0px;
+  position: relative;
+}
+.canui-flex-car .cu-list.menu-avatar>.cu-item {
+  padding-left:15rpx;
+  height:200rpx;
+}
+.canui-flex-car .cu-card .cu-avatar{
+  position:absolute;
+  right:10px;
+  bottom:170rpx;
+}
+.canui-flex-car .shadow-warp {
+  box-shadow:0 0 30rpx rgba(0, 0, 0, 0.1);
+}
+.canui-flex-car .cu-list.menu>.cu-item .content {
+  font-size:26rpx;
+}
+.canui-flex-car .text-sm {
+  font-size:20rpx;
+}
+.canui-flex-car .text-grey {
+  color: #000;
+}
+.canui-flex-car image{
+  height: 90px !important;
+}
+.canui-gps .justify-between{
+  padding: 0 10px;
+}
+
+.content .text-sm{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:1;
+}
+
+.canui-fixed{
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  z-index:999999;
+}
+.nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 40rpx 0px;
+    justify-content: space-between;
+}
+
+.nav-li {
+    padding: 30rpx;
+    border-radius: 12rpx;
+    width: 45%;
+    margin: 0 2.5% 40rpx;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 1;
+}
+
+.nav-li::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background-color: inherit;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    bottom: -10%;
+    border-radius: 10rpx;
+    opacity: 0.2;
+    transform: scale(0.9, 0.9);
+}
+
+.nav-li.cur {
+    color: #fff;
+    background: rgb(94, 185, 94);
+    box-shadow: 4rpx 4rpx 6rpx rgba(94, 185, 94, 0.4);
+}
+
+.nav-title {
+    font-size: 32rpx;
+    font-weight: 300;
+}
+
+.nav-title::first-letter {
+    font-size: 40rpx;
+    margin-right: 4rpx;
+}
+
+.nav-name {
+    font-size: 28rpx;
+    text-transform: Capitalize;
+    margin-top: 20rpx;
+    position: relative;
+}
+
+.nav-name::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 40rpx;
+    height: 6rpx;
+    background: #fff;
+    bottom: 0;
+    right: 0;
+    opacity: 0.5;
+}
+
+.nav-name::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100rpx;
+    height: 1px;
+    background: #fff;
+    bottom: 0;
+    right: 40rpx;
+    opacity: 0.3;
+}
+
+.nav-name::first-letter {
+    font-weight: bold;
+    font-size: 36rpx;
+    margin-right: 1px;
+}
+
+.nav-li text {
+    position: absolute;
+    right: 30rpx;
+    top: 30rpx;
+    font-size: 52rpx;
+    width: 60rpx;
+    height: 60rpx;
+    text-align: center;
+    line-height: 60rpx;
+}
+
+.text-light {
+    font-weight: 300;
+}
+
+@keyframes show {
+    0% {
+        transform: translateY(-50px);
+    }
+
+    60% {
+        transform: translateY(40rpx);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@-webkit-keyframes show {
+    0% {
+        transform: translateY(-50px);
+    }
+
+    60% {
+        transform: translateY(40rpx);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+/**自写方法**/
+.box{
+    position: absolute;
+    padding-bottom: 150rpx;
+    top: 64px;
+    width: 100%;
+}
+.canui-head-title{
+    font-size: 34rpx;
+}
+.canui-xzwz{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:1;
+}
+.canui-foor-fixed{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index:99999;
+}
+.canui-tabbar-bottom{
+    padding-bottom:20rpx;
+    min-height:150rpx;
+}
+.canui-tabbar-fixed-bottom{
+    bottom: 70rpx;
+}
+.canui-color-gradual{
+    background-image:linear-gradient(45deg, #ff9700, #ed1c24);
+    color: #fff;
+}
+.canui-text-right{
+    float: right;
+    text-align: right;
+}
+.canui-lines{
+    background-image: url("/img/8efd613f-da90-4834-bcd3-69822830bc73.png");
+    background-size:150% 100%;
+    width:100%;
+    height:5rpx;
+    position:absolute;
+    bottom:2rpx;
+}
+
+  .a-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 30rpx;
+    border-bottom: 1rpx solid #f1f1f1;
+}
+
+.a-item .icon {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 20rpx;
+}
+
+.a-item .icon .img {
+    width: 36rpx;
+    height: 36rpx;
+
+}
+.dangqianchengshi{
+  font-size:10px;
+  color:#999;
+  width: 80px;
+}
+.a-item .input-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 30rpx 30rpx 30rpx 0;
+    border-bottom: 1rpx solid #f1f1f1;
+}
+
+.a-item:last-child .input-wrap {
+    border-bottom: none;
+}
+
+.a-item .input-wrap .a-input {
+    font-size: 28rpx;
+    width: 100%;
+}
+
+.a-item .input-wrap .arrow {
+    width: 10rpx;
+    height: 10rpx;
+    border-top: 4rpx solid #aaa;
+    border-right: 4rpx solid #aaa;
+    transform: rotate(45deg);
+}
+
+.a-input {
+    font-size: 28rpx;
+    width: 100%;
+}
+  .sw {
+    height: 400rpx;
+  }
+  .sw_item{
+    width: 100%;
+  }
+  .sw_item image{
+    width: 100%;
+    height: 400rpx;
+  }
+  
+  .sousuo{
+    width: 96%;
+    top: 300rpx;
+    left: 2%;
+    background: #fff;
+    border-radius: 20rpx; 
+    height: 400rpx; 
+    -webkit-box-shadow:0 0 30rpx rgba(0, 0, 0, .3);  
+    -moz-box-shadow:0 0 30rpx  rgba(0, 0, 0,  .3);  
+    box-shadow:0 0 30rpx  rgba(0, 0, 0,  .3);  
+    margin:6px;
+  }
+  
+  .sousuo .title{
+     width: 90%;
+     margin: 0 auto;
+     border-bottom: 1rpx solid #e2e2e2;
+     height: 80rpx;
+     line-height: 80rpx;
+     font-size: 32rpx; color: #000; 
+  }
+  
+  .sousuo .title image{
+    width: 50rpx;
+    height: 50rpx; float: right; margin-right: 30rpx;
+    margin-top: 10rpx;
+  }
+  
+  .sousuo .riqi{
+    height: 100rpx;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 10rpx;
+    font-size: 32rpx;
+    border-bottom: 1rpx solid #e2e2e2;
+  }
+  .sousuo .pick{
+     height: 80rpx;
+     line-height: 80rpx;
+     font-size: 32rpx;
+     width: 90%;
+     margin: 0 auto;
+     margin-top: 10rpx;
+  
+  }
+  .pick image{
+    width: 40rpx;height: 40rpx;
+    float: right; margin-right: 20rpx;
+    margin-top: 20rpx;
+  }
+  .sousuo  button{
+    width: 90%;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 26rpx;
+    color: #fff;
+    background:  #fd8137;
+  }
+  
+  
+  .riqi .lt,.ct{
+    float: left;
+  }
+  .riqi .lt,.rt{
+    line-height: 100rpx;
+    width: 40%;
+  }
+  .riqi  .rt{
+    float: right;
+    text-align: right;
+  }
+  .riqi .rq{
+    font-size: 24rpx;
+    margin-left: 20rpx;
+  }
+  .riqi .ct{
+     height: 40rpx;
+     margin-top: 20rpx;
+     font-size: 24rpx;
+     line-height: 40rpx;
+     text-align: center;
+     width: 20%;
+     color: #fd8137;
+     border-bottom: 1rpx solid #fd8137;
+  }
+  
+  .youhuiquanqiang{
+    height: 150rpx;
+    margin-top: 20rpx;
+    text-align: center;
+  }
+  
+  .youhuiquanqiang image{
+    width: 96%;
+    height: 150rpx;
+  }
+  
+  .zhuti{
+    margin-top: 320rpx;
+  }
+  
+  .zhuti .title{
+    width: 96%;
+    margin: 0 auto;
+    font-size: 38rpx;
+  }
+  
+  .zhuti .list{
+    width: 100%;
+    margin:  0 auto;
+    margin-top: 20rpx;
+    height: 300rpx;
+  }
+  .zhuti .zhutisw{
+    height: 300rpx;
+    white-space: nowrap; 
+  }
+  
+  .zhutisw_item{
+    display: inline-block;
+    width: 200rpx;
+    height: 300rpx;
+    margin-left: 30rpx;
+  }
+  .zhutisw_item image{
+    width: 200rpx;
+    height: 260rpx;
+    display: block;
+  }
+  .zhutisw_item text{
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 26rpx;
+    text-align: center;
+    display: block;
+  }
+  .footer{
+    height: 100rpx;
+    width: 100%;
+    position: fixed;
+    bottom:0;
+    background: #ffffff; 
+    border-top:1rpx solid #e2e2e2;
+  }
+  .footer .ft_item{
+    width: 25%;
+    height: 100%;
+    text-align: center;
+    float: left;
+  }
+  .footer .on{
+    color: #1ba8b9;
+  }
+  
+  .footer .ft_item image{
+    height: 45rpx; width: 45rpx;margin: 0 auto;display:block; margin-top: 10rpx;
+  }
+  .footer  .ft_item text{
+    text-align: center;
+    font-size: 26rpx;display:block;margin:0 auto;margin-top: 10rpx;
+  }
+  
+
+  /*精选推荐*/
+.menus-list .menus-item {
+  position: relative;
+  padding: 28rpx 28rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.menus-list .menus-item .menus-item__name {
+  color: #444;
+  margin-left: 20rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.show_item{
+  font-size: 14px;
+  margin-left: -5px;
+  margin-top: 20px;
+  /* font-family: sans-serif; */
+}
+.hide_item{
+  /* font-family: sans-serif; */
+  font-size: 10px;
+  margin-left: 25px;
+  margin-top: -15px;
+
+}
+.show_text{
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  align-content: center;
+  margin-top:5px;
+}
+.yh {
+  background: #fff;
+  margin-top: 10px;
+  padding: 10px 0 15px 0;
+}
+.jingx {
+  width: 100%;
+  margin-top: 10px;
+
+  background: #fff;
+}
+.jx-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+  border-bottom: solid 1px #e8e8e8;
+  padding-left: 5px;
+}
+.jx-img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+.jx-content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-left: 5px;
+}
+.conNav {
+  width: 50%;
+}
+.con-item {
+  margin: 0 10px 10px 0;
+  background: #fff;
+  padding: 10px;
+}
+.itemImg {
+  width: 100%;
+  height: 134px;
+} 
+.shopName {
+  font-size: 26rpx;
+  margin: 5rpx 10rpx;
+  width: 100%;
+}

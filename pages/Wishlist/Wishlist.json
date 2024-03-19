@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "心愿单",
+  "usingComponents": {
+    "van-tag": "../../dist/tag/index"
+  }
+}

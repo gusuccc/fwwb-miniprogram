@@ -1,0 +1,93 @@
+<view class="container" wx:if="{{loading == 0}}">
+    <view class='contact-wrap'>
+        <button class="contact-btn" session-from='{"nickName":"{{userInfo.nickname}}","avatarUrl":"{{userInfo.avatar}}"}' open-type="contact">
+            <image class='icon' src='/images/icon/contact.png'></image>
+            <view class='text'>客服</view>
+        </button>
+    </view>
+    
+    <view class="search">
+        <navigator url="/pages/search/search" class="input">
+            <image class="icon" src="/images/icon/search.png"></image>
+            <text class="txt">搜索，发现更多商品                   ~</text>
+        </navigator>
+    </view>
+
+    <view class='banner-wrap' wx:if="{{show_banner!=0}}">
+        <swiper class="banner" indicator-dots="true" autoplay="{{autoplay}}" interval="3000" duration="1000"   >
+            <swiper-item wx:for="{{banner}}" wx:key="id">
+                    <image src="{{item.image_url}}" background-size="cover"></image>
+                    <image src="{{item.image_url}}" background-size="cover"></image>
+            </swiper-item>
+        </swiper>
+    </view>
+    <!-- 以上为轮播图部分 -->
+
+    <view class='marquee_box' wx:if="{{show_notice == 1}}">
+        <swiper vertical="{{true}}" class="notice-swiper" indicator-dots="{{false}}" autoplay="{{autoplay}}" interval="2000" duration="1000">
+            <swiper-item wx:for="{{notice}}" wx:key="id" class='notice-wrap'>
+                <view class="icon">
+                    <image src="/images/icon/notice-icon.png" class='img'>
+                    </image>
+                </view>
+                <view class='notice-text'>{{item.content}}</view>
+            </swiper-item>
+        </swiper>
+    </view>
+    <!-- 以上为通知、提示信息 -->
+
+    <!-- 以下为分类圈信息 -->
+    <swiper class="catalog-wrap" indicator-dots="{{false}}" indicator-color="#dedede" indicator-active-color="#e00000" wx:if="{{show_channel==1}}">
+        <swiper-item class="first">
+            <view wx:for="{{channel}}" wx:key="id" class='icon-navi' wx:for-index="index" wx:for-item="item" bindtap="goCategory">
+                <navigator url="{{item.url}}">
+                    <image class='icon-img' src="{{item.icon_url}}"></image>
+                    <view class='icon-text'>{{item.name}}</view>
+                </navigator>
+            </view>
+        </swiper-item>
+    </swiper>
+
+
+    <!-- 以下为商品分类信息 -->
+    <view class="goods-container">
+        <view class='topic-container' wx:for="{{floorGoods}}" wx:key="id">
+
+            <!-- 分类头信息 -->
+            <view class='banner-container' bindtap="goCategory" data-cateid="{{item.id}}">
+                <image mode='aspectFill' style="width:100%;height:100rpx" src='{{item.banner}}'>
+                </image>
+                <view class="bg" style="height:100rpx;line-height:100rpx;"></view> 
+                <view class="text" style="height:100rpx;line-height:100rpx;">{{item.name}}</view>
+            </view>
+
+            <!-- 渲染该分类下的商品信息 -->
+            <view class='list-wrap clearfix'>     <!-- 对该分类下的goodsList循环 -->
+                <view class="new-box {{(iindex+1)%3 == 0?'no-margin':''}}" wx:for="{{item.goodsList}}" wx:for-index="iindex" wx:for-item="iitem" wx:key="id">
+                    <navigator hover-class='none' class='navi-url' url="/pages/goods/goods?id={{iitem.id}}">
+                        <view class="box">
+                            <image src="{{iitem.list_pic_url}}" class="image"></image>
+                        </view>
+                        <view class="goods-info">
+                            <view class="goods-title">{{iitem.goodname}}</view>
+                            <view class='price-container'>
+                                <view class='l'>
+                                    <view class='h'>￥{{iitem.min_retail_price1}}~{{iitem.min_retail_price2}}/天</view>
+                                </view>
+                            </view>
+                        </view>
+                    </navigator>
+                </view>
+            </view>
+            
+            <view class="more-category" data-cateid="{{item.id}}" bindtap="goCategory">点击查看更多</view>
+            <!-- 点击查看更多信息-->
+        </view>
+    </view>
+
+</view>
+
+<view class="loading" style="height:356px" wx:else>
+        <image class="img" src="/images/icon/loading.gif"></image>
+    <view class="text">正在加载...</view>
+</view>

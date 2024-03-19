@@ -1,0 +1,9 @@
+{
+    
+    "navigationBarTitleText":  "确认房屋订单",
+    "usingComponents": {
+        "van-calendar": "../../dist/calendar/index",
+        "van-dialog": "../../dist/dialog/index"
+      }
+}
+

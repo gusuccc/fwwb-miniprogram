@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "租房搜索",
+  "usingComponents": {
+    "van-rate": "../../dist/rate/index",
+    "van-calendar": "../../dist/calendar/index"
+  }
+}

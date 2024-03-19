@@ -1,0 +1,20 @@
+<view class="container">
+	<view class="coupons-list">
+		<view class="coupons-item" wx:key="id" bindtap="gitCoupon" data-id="{{item.id}}"><!-- wx:for-items="{{coupons}}"-->
+			<view class="coupons-item-box">
+				<view class="money-left">{{item.moneyMax}}123
+					<text>元</text>
+				</view>
+				<view class="money-right">
+					<view class="money-name">{{item.name}}电商券</view>
+					<view class="money-hold">满{{item.moneyHreshold}}0元使用</view>
+				</view>
+				<view class="money-home">立即领取</view>
+			</view>
+			<view class="money-line"></view>
+			<!--下面两个if可要可不要-->
+			<view class="money-fooder" >{{item.dateEnd}}2021-5-4 前有效</view><!--wx:if="{{item.dateEndType == 0}}"-->
+			<view class="money-fooder" >领取 {{item.dateEndDays}}3 天内有效</view><!--wx:if="{{item.dateEndType == 1}}"-->
+		</view>
+	</view>
+</view>

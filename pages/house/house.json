@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "商品详情",
+  "usingComponents": {
+    "van-tag": "../../dist/tag/index",
+    "van-rate": "../../dist/rate/index",
+    "shortcut": "/dist/shortcut/shortcut",
+    "van-calendar": "../../dist/calendar/index",
+    "van-dialog": "../../dist/dialog/index"
+  }
+}
